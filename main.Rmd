@@ -18,12 +18,8 @@ deaths2020to2021 <- rbind(
   read.csv("assets/individual-deaths/deces_2021_M06.csv", sep = ";")
 ) %>%
   rename(birth_year = datenaiss, year = datedeces, sex = sexe) %>%
-  mutate(birth_year = birth_year %>%
-    substr(0, 4) %>%
-    as.integer()) %>%
-  mutate(year = year %>%
-    substr(0, 4) %>%
-    as.integer()) %>%
+  mutate(birth_year = as.integer(substr(birth_year, 0, 4))) %>%
+  mutate(year = as.integer(substr(year, 0, 4))) %>%
   filter(year != 0 & birth_year != 0) %>%
   filter(year >= 2020) %>%
   mutate(age = year - birth_year) %>%
@@ -35,11 +31,11 @@ deaths1968to2019 <- read.csv("assets/deaths.csv", sep = ";") %>%
     sex = SEXE, year = ANNEE_1962_2019,
     age = AGE_ATTEINT_R, deaths = DECES
   ) %>%
-  # Metropolitan France only
   mutate(sex = as.factor(recode(sex, "H" = "M", "F" = "F"))) %>%
-  # Remove deaths for all ages
+  # Remove deaths for "all ages"
   filter(age != "DEC") %>%
   mutate(age = as.integer(sub(".", "", age))) %>%
+  # Metropolitan France only, and remove "both sex" counts
   filter(CHAMP == "FM" & (sex == "M" | sex == "F")) %>%
   select(year, age, sex, deaths)
 
