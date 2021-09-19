@@ -1,6 +1,7 @@
-```{r}
+```{r, results=FALSE, message=FALSE}
 library(tidyverse)
 library(lubridate)
+library(ggthemes)
 
 options(scipen = 1000000)
 
@@ -48,7 +49,7 @@ deaths <- union(deaths1968to2019, deaths2020to2021) %>%
   left_join(age_pyramid, by = c("year", "age", "sex"))
 ```
 
-```{r, fig.width=16, fig.height=8}
+```{r, results=FALSE, message=FALSE, fig.width=16, fig.height=8}
 deaths %>%
   filter(year == 2020 | year == 2017 | year == 2000 | year == 1980) %>%
   mutate(death_rate = deaths / pop) %>%
@@ -56,28 +57,32 @@ deaths %>%
   facet_grid(~sex) +
   scale_y_log10() +
   geom_line(size = 1) +
+  theme_hc() +
+  scale_colour_few() +
+  theme(plot.title = element_text(size = 18)) +
   labs(
     x = "Age", y = "Death rate",
     color = "Year", title = "Death rate per age"
   )
 ```
 
-```{r, fig.width=16}
+```{r, results=FALSE, message=FALSE, fig.width=16}
 deaths %>%
   filter(year >= 1962 & year < 2021) %>%
   group_by(year, sex) %>%
   summarise(deaths = sum(deaths)) %>%
   ggplot(aes(year, deaths, fill = sex)) +
   geom_bar(stat = "identity", position = "dodge") +
+  theme_hc() +
+  scale_fill_few() +
+  theme(plot.title = element_text(size = 18)) +
   labs(
     x = "Year", y = "Deaths",
     fill = "Sex", title = "Deaths per year"
   )
 ```
 
-```{r, fig.width=16}
-ref_year <- 2020
-
+```{r, results=FALSE, message=FALSE, fig.width=16}
 deaths %>%
   filter(year >= 1962 & year < 2021) %>%
   group_by(year, sex) %>%
@@ -85,13 +90,16 @@ deaths %>%
   mutate(normalized_deaths = deaths / pop) %>%
   ggplot(aes(year, normalized_deaths, fill = sex)) +
   geom_bar(stat = "identity", position = "dodge") +
+  theme_hc() +
+  scale_fill_few() +
+  theme(plot.title = element_text(size = 18)) +
   labs(
     x = "Year", y = "Deaths",
     fill = "Sex", title = "Death rate per year"
   )
 ```
 
-```{r, fig.width=16}
+```{r, results=FALSE, message=FALSE, fig.width=16}
 ref_year <- 2020
 
 deaths %>%
@@ -108,6 +116,9 @@ deaths %>%
   summarise(normalized_deaths = sum(normalized_deaths)) %>%
   ggplot(aes(year, normalized_deaths, fill = sex)) +
   geom_bar(stat = "identity", position = "dodge") +
+  theme_hc() +
+  scale_fill_few() +
+  theme(plot.title = element_text(size = 18)) +
   labs(
     x = "Year", y = "Deaths", fill = "Sex",
     title = paste("Deaths per year normalized to ",
