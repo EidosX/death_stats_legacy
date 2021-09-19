@@ -1,0 +1,7 @@
+description: Age distribution in Metropolitan France from 1901 to 2021.
+notes:
+  - Data from 2018 to 2021 is provisional
+  - Age column is generational age (for example in 2021, age 0 means "born in 2020").
+    We know that because on the interactive website, when hovering over age 0,
+    it displays "Année de naissance 2020"
+source: https://www.insee.fr/fr/outil-interactif/5014911/pyramide.htm#!&t=1

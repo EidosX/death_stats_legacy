@@ -1,0 +1,5 @@
+description: Files with every reported deceased indiviual
+notes:
+  - Deaths can be reported late. Don't assume that the 2020 file contains every 2020 death.
+  - Years can be 0000 if unknown (same with month and day)
+source: https://www.insee.fr/fr/information/4190491
