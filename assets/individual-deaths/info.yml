@@ -2,4 +2,5 @@ description: Files with every reported deceased indiviual
 notes:
   - Deaths can be reported late. Don't assume that the 2020 file contains every 2020 death.
   - Years can be 0000 if unknown (same with month and day)
+  - We can filter Overseas France with these codes https://fr.wikipedia.org/wiki/Codes_g%C3%A9ographiques_de_la_France
 source: https://www.insee.fr/fr/information/4190491

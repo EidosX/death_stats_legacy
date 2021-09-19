@@ -22,6 +22,8 @@ deaths2020to2021 <- rbind(
   mutate(year = as.integer(substr(year, 0, 4))) %>%
   filter(year != 0 & birth_year != 0) %>%
   filter(year >= 2020) %>%
+  # Remove overseas deaths
+  filter(!startsWith(lieudeces, "97") & !startsWith(lieudeces, "98")) %>%
   mutate(age = year - birth_year) %>%
   mutate(sex = as.factor(recode(sex, "1" = "M", "2" = "F"))) %>%
   count(year, age, sex, name = "deaths")
