@@ -11,12 +11,14 @@ age_pyramid <- read.csv("assets/age-pyramids.csv", sep = ";") %>%
 
 deaths2020to2021 <- rbind(
   read.csv("assets/individual-deaths/deces_2020.csv", sep = ";"),
-  read.csv("assets/individual-deaths/deces_2021_M01.csv", sep = ";"),
-  read.csv("assets/individual-deaths/deces_2021_M02.csv", sep = ";"),
-  read.csv("assets/individual-deaths/deces_2021_M03.csv", sep = ";"),
-  read.csv("assets/individual-deaths/deces_2021_M04.csv", sep = ";"),
-  read.csv("assets/individual-deaths/deces_2021_M05.csv", sep = ";"),
-  read.csv("assets/individual-deaths/deces_2021_M06.csv", sep = ";")
+  read.csv("assets/individual-deaths/Deces_2021_M01.csv", sep = ";"),
+  read.csv("assets/individual-deaths/Deces_2021_M02.csv", sep = ";"),
+  read.csv("assets/individual-deaths/Deces_2021_M03.csv", sep = ";"),
+  read.csv("assets/individual-deaths/Deces_2021_M04.csv", sep = ";"),
+  read.csv("assets/individual-deaths/Deces_2021_M05.csv", sep = ";"),
+  read.csv("assets/individual-deaths/Deces_2021_M06.csv", sep = ";"),
+  read.csv("assets/individual-deaths/Deces_2021_M07.csv", sep = ";"),
+  read.csv("assets/individual-deaths/Deces_2021_M08.csv", sep = ";")
 ) %>%
   rename(birth_year = datenaiss, year = datedeces, sex = sexe) %>%
   mutate(birth_year = as.integer(substr(birth_year, 0, 4))) %>%
